@@ -10,7 +10,6 @@ public class ServerApplication {
 
         SpringApplication.run(ServerApplication.class, args);
 
-        System.out.print("Hello Wordl!");
     }
 
 }

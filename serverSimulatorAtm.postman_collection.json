@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "037419ae-538c-4132-ae4b-ed895907a831",
+		"name": "serverSimulatorAtm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21850163"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
