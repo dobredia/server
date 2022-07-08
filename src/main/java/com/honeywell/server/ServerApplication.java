@@ -13,20 +13,6 @@ public class ServerApplication {
 
         SpringApplication.run(ServerApplication.class, args);
 
-        SQLiteTest test =  new SQLiteTest();
-        ResultSet rs;
-        try{
-            rs= test.displayUsers();
-            while (rs.next()){
-                System.out.println(rs.getString("fName") + " " + rs.getString("lName"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-           e.printStackTrace();
-        }
-
-
     }
 
 }
