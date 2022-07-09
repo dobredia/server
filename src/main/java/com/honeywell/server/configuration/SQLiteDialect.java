@@ -39,7 +39,6 @@ public class SQLiteDialect extends Dialect {
         registerFunction("substr", new StandardSQLFunction("substr", StringType.INSTANCE));
         registerFunction("substring", new StandardSQLFunction("substr", StringType.INSTANCE));
     }
-
     public boolean supportsIdentityColumns() {
         return true;
     }

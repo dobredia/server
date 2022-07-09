@@ -1,44 +1,44 @@
 package com.honeywell.server.entities;
 
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="card")
-@NoArgsConstructor
+@Table(name="cards")
+@Getter @Setter
 public class CardEntity {
     @Id
-    private int id;
-
+    private Integer id;
     @Column(nullable = false)
     private String cardNumber;
-
     @Column(nullable = false)
-    private int pin;
+    private String pin;
 
     @ManyToOne
-    private ContEntity cont;
+    @JoinColumn(name="account_id")
+    private AccountEntity account;
+    public CardEntity(){}
 
-    public CardEntity(int id, String number, int pin ){
+    public CardEntity(String cardNumber, String pin ){
+        this.cardNumber = cardNumber;
+        this.pin = pin;
+    }
+
+    public CardEntity(Integer id, String cardNumber, String pin ){
         this.id = id;
-        this.cardNumber = number;
+        this.cardNumber = cardNumber;
         this.pin = pin;
     }
 
-    public CardEntity( String number, int pin ){
-        this.cardNumber = number;
-        this.pin = pin;
-    }
-
-    @ManyToOne(optional = false)
-    private ContEntity contEntities;
-
-    public ContEntity getContEntities() {
-        return contEntities;
-    }
-
-    public void setContEntities(ContEntity contEntities) {
-        this.contEntities = contEntities;
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", pin='" + pin + '\'' +
+                '}';
     }
 }
