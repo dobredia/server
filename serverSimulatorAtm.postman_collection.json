@@ -7,19 +7,127 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/user",
+			"name": "http://localhost:8080/getBalance/{cardNumberValid}",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/user",
+					"raw": "http://localhost:8080/getBalance/1234123412341234",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user"
+						"getBalance",
+						"1234123412341234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/getBalance/{cardNumberInvalid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getBalance/1234123412341234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getBalance",
+						"1234123412341234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/getAccount/{accountIdValid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getPin/1234123412341234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getPin",
+						"1234123412341234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/getAccount/{accountIdInvalid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getPin/1234123412341234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getPin",
+						"1234123412341234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/account/1/updateBalance?cashAmount=100",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/account/1/updateBalance?cashAmount=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"1",
+						"updateBalance"
+					],
+					"query": [
+						{
+							"key": "cashAmount",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/getPin/{accountValid}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getPin/1234123412341234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getPin",
+						"1234123412341234"
 					]
 				}
 			},
