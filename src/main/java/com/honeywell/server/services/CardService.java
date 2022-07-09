@@ -40,8 +40,10 @@ public class CardService {
     public Card changeCardPin(String cardNumber, String newCardPin) throws CardException {
         try{
             CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
-            cardEntity.se
-            return null;
+            cardEntity.setPin(newCardPin);
+            cardDao.save(cardEntity);
+            Card card = new Card(cardEntity.getCardNumber(),cardEntity.getPin());
+            return card;
         }catch(NoSuchElementException exe){
             throw new CardException(CARD_NOT_FOUND);
         }

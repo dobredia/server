@@ -132,6 +132,33 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8080/card/{cardNumberValid}/updatePin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/card/1234123412341234/updatePin?newCardPin=1111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"1234123412341234",
+						"updatePin"
+					],
+					"query": [
+						{
+							"key": "newCardPin",
+							"value": "1111"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
