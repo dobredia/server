@@ -10,7 +10,8 @@ public class Card {
     String pin;
     Account accountInformation;
 
-    public Card() {
+    public Card(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public Card(String cardNumber, String pin, Account accountInformation) {
