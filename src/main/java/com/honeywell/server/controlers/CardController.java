@@ -42,5 +42,15 @@ public class CardController {
                     HttpStatus.NOT_FOUND, exc.getMessage(), exc);
         }
     }
+    
+    @PostMapping(path = {"login"}, params = {"cardNumber", "pin"})
+        public Card login(@RequestParam String cardNumber, String pin){
+            try {
+                return cardService.login(cardNumber, pin);
+            } catch (CardException exc) {
+                throw new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED, exc.getMessage(), exc);
+            }
+        }
 
 }

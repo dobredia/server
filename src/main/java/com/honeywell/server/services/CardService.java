@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 
-import static com.honeywell.server.exceptions.Constants.CARD_NOT_FOUND;
+import static com.honeywell.server.exceptions.Constants.*;
 
 @Service
 public class CardService {
@@ -47,6 +47,25 @@ public class CardService {
             cardDao.save(cardEntity);
             Card card = new Card(cardEntity.getCardNumber(), cardEntity.getPin());
             return card;
+        } catch (NoSuchElementException exe) {
+            throw new CardException(CARD_NOT_FOUND);
+        }
+    }
+
+    public Card login(String cardNumber, String pin) throws CardException{
+        try {
+            CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
+            if (cardEntity.getPin().equals(pin)){
+                return new Card(cardEntity.getCardNumber(), null,
+                        new Account(
+                                cardEntity.getAccount().getId(),
+                                cardEntity.getAccount().getBalance(),
+                                cardEntity.getAccount().getIban()
+                        )
+                );
+            }else {
+                throw new CardException(INVALID_PIN, EXCEPTION_401);
+            }
         } catch (NoSuchElementException exe) {
             throw new CardException(CARD_NOT_FOUND);
         }
