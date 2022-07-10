@@ -134,6 +134,64 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8080/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/login?cardNumber=1234123412341234&pin=3456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "cardNumber",
+							"value": "1234123412341234"
+						},
+						{
+							"key": "pin",
+							"value": "3456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/login?cardNumber=1234123412341234&pin=34561",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "cardNumber",
+							"value": "1234123412341234"
+						},
+						{
+							"key": "pin",
+							"value": "34561"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8080/card/{cardNumberValid}/updatePin",
 			"request": {
 				"method": "POST",
