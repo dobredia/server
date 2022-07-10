@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-
-import static com.honeywell.server.exceptions.Constants.*;
+import static com.honeywell.server.exceptions.Constants.ACCOUNT_NOT_FOUND;
+import static com.honeywell.server.exceptions.Constants.INSUFFICIENT_FOUNDS;
 
 @Service
 public class AccountService {
@@ -23,28 +23,28 @@ public class AccountService {
     public Account getAccount(Integer accountId) throws AccountException {
         try {
             AccountEntity accountEntity = accountDAO.findById(accountId).get();
-            Account account = new Account(accountEntity.getId(),accountEntity.getBalance(), accountEntity.getIban());
+            Account account = new Account(accountEntity.getId(), accountEntity.getBalance(), accountEntity.getIban());
             List<Card> cards = accountEntity.getCards()
                     .stream().map(a -> new Card(a.getCardNumber(), a.getPin()))
                     .collect(Collectors.toList());
             account.setCardList(cards);
             return account;
-        }catch (NoSuchElementException exec) {
+        } catch (NoSuchElementException exec) {
             throw new AccountException(ACCOUNT_NOT_FOUND);
         }
     }
 
-    public Account updateBalanceAccount(Integer accountId, Double cashAmount) throws AccountException{
+    public Account updateBalanceAccount(Integer accountId, Double cashAmount) throws AccountException {
         try {
             AccountEntity accountEntity = accountDAO.findById(accountId).get();
-            if (accountEntity.getBalance()+cashAmount<0){
+            if (accountEntity.getBalance() + cashAmount < 0) {
                 throw new AccountException(INSUFFICIENT_FOUNDS);
             }
-            accountEntity.setBalance(accountEntity.getBalance()+cashAmount);
+            accountEntity.setBalance(accountEntity.getBalance() + cashAmount);
             accountDAO.saveAndFlush(accountEntity);
             Account account = new Account(accountEntity.getBalance(), accountEntity.getIban());
             return account;
-        }catch (NoSuchElementException exec) {
+        } catch (NoSuchElementException exec) {
             throw new AccountException(ACCOUNT_NOT_FOUND);
         }
     }

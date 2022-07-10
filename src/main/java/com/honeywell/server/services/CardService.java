@@ -7,8 +7,10 @@ import com.honeywell.server.exceptions.CardException;
 import com.honeywell.server.repository.CardDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.NoSuchElementException;
-import static com.honeywell.server.exceptions.Constants.*;
+
+import static com.honeywell.server.exceptions.Constants.CARD_NOT_FOUND;
 
 @Service
 public class CardService {
@@ -16,35 +18,36 @@ public class CardService {
     private CardDAO cardDao;
 
     public Card getBalance(String cardNumber) throws CardException {
-        try{
+        try {
             CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
-            Card card = new Card(cardEntity.getCardNumber(),cardEntity.getPin());
-            Account account = new Account(cardEntity.getAccount().getId(),cardEntity.getAccount().getBalance(), cardEntity.getAccount().getIban());
+            Card card = new Card(cardEntity.getCardNumber(), cardEntity.getPin());
+            Account account = new Account(cardEntity.getAccount().getId(),
+                    cardEntity.getAccount().getBalance(), cardEntity.getAccount().getIban());
             card.setAccountInformation(account);
             return card;
-        }catch(NoSuchElementException exe){
+        } catch (NoSuchElementException exe) {
             throw new CardException(CARD_NOT_FOUND);
         }
     }
 
     public Card getPin(String cardNumber) throws CardException {
-        try{
+        try {
             CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
-            Card card = new Card(cardEntity.getCardNumber(),cardEntity.getPin());
+            Card card = new Card(cardEntity.getCardNumber(), cardEntity.getPin());
             return card;
-        }catch(NoSuchElementException exe){
+        } catch (NoSuchElementException exe) {
             throw new CardException(CARD_NOT_FOUND);
         }
     }
 
     public Card changeCardPin(String cardNumber, String newCardPin) throws CardException {
-        try{
+        try {
             CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
             cardEntity.setPin(newCardPin);
             cardDao.save(cardEntity);
-            Card card = new Card(cardEntity.getCardNumber(),cardEntity.getPin());
+            Card card = new Card(cardEntity.getCardNumber(), cardEntity.getPin());
             return card;
-        }catch(NoSuchElementException exe){
+        } catch (NoSuchElementException exe) {
             throw new CardException(CARD_NOT_FOUND);
         }
     }

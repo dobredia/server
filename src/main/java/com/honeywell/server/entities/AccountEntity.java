@@ -8,22 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="accounts")
-@Getter @Setter
+@Table(name = "accounts")
+@Getter
+@Setter
 public class AccountEntity {
     @Id
     private Integer id;
 
-    @Column(name="balance", nullable = false)
+    @Column(name = "balance", nullable = false)
     private Double balance;
 
     @Column(name = "iban", nullable = false)
     private String iban;
 
-    @OneToMany(mappedBy= "account", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<CardEntity> cards = new ArrayList<>();
 
-    public AccountEntity(){
+    public AccountEntity() {
     }
 
     public AccountEntity(Double balance, String iban) {

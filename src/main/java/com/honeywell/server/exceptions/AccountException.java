@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AccountException extends Exception{
+public class AccountException extends Exception {
     String errorMessage;
 
-    public AccountException(String errorMessage){
+    public AccountException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 }
