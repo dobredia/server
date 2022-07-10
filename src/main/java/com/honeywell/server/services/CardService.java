@@ -19,7 +19,7 @@ public class CardService {
         try{
             CardEntity cardEntity = cardDao.findByCardNumber(cardNumber).get();
             Card card = new Card(cardEntity.getCardNumber(),cardEntity.getPin());
-            Account account = new Account(cardEntity.getAccount().getBalance(), cardEntity.getAccount().getIban());
+            Account account = new Account(cardEntity.getAccount().getId(),cardEntity.getAccount().getBalance(), cardEntity.getAccount().getIban());
             card.setAccountInformation(account);
             return card;
         }catch(NoSuchElementException exe){

@@ -23,7 +23,7 @@ public class AccountService {
     public Account getAccount(Integer accountId) throws AccountException {
         try {
             AccountEntity accountEntity = accountDAO.findById(accountId).get();
-            Account account = new Account(accountEntity.getBalance(), accountEntity.getIban());
+            Account account = new Account(accountEntity.getId(),accountEntity.getBalance(), accountEntity.getIban());
             List<Card> cards = accountEntity.getCards()
                     .stream().map(a -> new Card(a.getCardNumber(), a.getPin()))
                     .collect(Collectors.toList());
